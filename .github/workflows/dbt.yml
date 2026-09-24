@@ -33,3 +33,5 @@ jobs:
                 schema: ANALYTICS
                 threads: 4
           EOF
+      - name: Run dbt build
+        run: dbt build
