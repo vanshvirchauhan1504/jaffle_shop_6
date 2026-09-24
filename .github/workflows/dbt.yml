@@ -1,0 +1,17 @@
+name: dbt CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  dbt-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run dbt
+        run: echo "dbt CI is running"
