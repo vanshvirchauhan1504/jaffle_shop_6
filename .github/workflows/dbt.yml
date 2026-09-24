@@ -14,4 +14,22 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install dbt
-        run: pip install dbt-snowflake 
+        run: pip install dbt-snowflake
+
+      - name: Create dbt profile
+        run: |
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml <<EOF
+          jaffle_shop_6:
+            target: dev
+            outputs:
+              dev:
+                type: snowflake
+                account: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+                user: ${{ secrets.SNOWFLAKE_USER }}
+                password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+                database: DBT_DEMO
+                warehouse: DBT_WH
+                schema: ANALYTICS
+                threads: 4
+          EOF
