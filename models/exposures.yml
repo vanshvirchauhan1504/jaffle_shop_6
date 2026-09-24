@@ -1,0 +1,11 @@
+version: 2
+
+exposures:
+  - name: orders_dashboard
+    type: dashboard
+    maturity: medium
+    owner:
+      name: Data Team
+    description: "Dashboard showing order and revenue information."
+    depends_on:
+      - ref('fct_orders')

@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: raw
+    database: DBT_DEMO
+    schema: RAW
+    tables:
+
+      - name: customers
+        columns:
+          - name: customer_id
+            data_tests:
+              - not_null
+              - unique
+      - name: products
+      - name: orders
+        config:
+          loaded_at_field: updated_at
+          freshness:
+            warn_after:
+              count: 1
+              period: day
+      - name: order_items
